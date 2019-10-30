@@ -8,10 +8,7 @@ export const ImageCard = ({
   },
 }) => {
   const [width, setWidth] = useState(0);
-  const onImageLoad = ({ target }) => {
-    console.log('IMG', target.offsetWidth)
-    setWidth(target.offsetWidth);
-  };
+  const onImageLoad = ({ target }) => setWidth(target.offsetWidth);
 
   return (
     <div className="image-card">
