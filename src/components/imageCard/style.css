@@ -1,0 +1,32 @@
+.image-card {
+  margin: 0 16px 16px 0;
+  border: 1px solid #4c5b5c;
+
+  height: 280px;
+  background-color: white;
+
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.image-card-picture {
+  height: 240px;
+  width: auto;
+  cursor: pointer;
+  transition: all .05s ease-in;
+  
+}
+
+.image-card-picture:hover {
+  transform: scaleX(1.5) scaleY(1.5);
+  transition: all .2s ease-in .5s;
+}
+
+.image-card-title {
+  padding: 8px 8px 0;
+  font-size: 16px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

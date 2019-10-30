@@ -1,0 +1,25 @@
+.container {
+  padding: 32px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.container-header {
+  margin-bottom: 32px;
+
+  color: #4c5b5c;
+  font-size: 48px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.main-link {
+  color: #4c5b5c;
+}
+
+.main-link:hover {
+  opacity: 0.7;
+}

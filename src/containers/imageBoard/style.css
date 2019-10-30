@@ -1,0 +1,8 @@
+.image-board {
+  /* border: 2px solid #4c5b5c;
+  border-radius: 4px; */
+  padding: 32px 16px 16px 32px;
+
+  display: flex;
+  flex-wrap: wrap;
+}

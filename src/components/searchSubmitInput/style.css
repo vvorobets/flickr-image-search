@@ -1,0 +1,53 @@
+.search-submit-input-container {
+  margin: 16px 0;
+
+  position: relative;
+}
+
+.search-submit-input {
+  height: 24px;
+  padding: 8px 36px 8px 8px;
+  border-radius: 4px;
+  
+  outline: none;
+}
+
+.search-submit-input::placeholder {
+  opacity: 0.5;
+}
+
+.search-submit-input-button {
+  height: 40px;
+  border: none;
+  border-radius: 2px;
+  padding: 8px;
+  background-color: white;
+  color: #4c5b5c;
+  font-size: 16px;
+  outline: none;
+  cursor: pointer;
+
+  position: absolute;
+  right: 2px;
+  top: 2px;
+}
+
+.search-submit-input-button:hover {
+  background-color: lightskyblue;
+}
+
+.gallery-id-tip {
+  max-width: 96vw;
+  text-align: center;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.gallery-id-badge {
+  margin: 4px 0;
+  padding: 0px 4px;
+  border-radius: 2px;
+  background-color: white;
+  font-size: 14px;
+  font-style: normal;
+}
