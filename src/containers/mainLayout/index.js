@@ -41,7 +41,9 @@ export class MainLayout extends Component {
 
   fetchPhotos = async () => {
     this.setState({ isLoading: true, errorMessage: '' });
-    const url = `https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${API_KEY}&gallery_id=${this.state.galleryId || SECOND_GALLERY_ID}&format=json&nojsoncallback=1`;
+
+    const { galleryId } = this.state;
+    const url = `https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${API_KEY}&gallery_id=${galleryId || SECOND_GALLERY_ID}&format=json&nojsoncallback=1`;
 
     const { stat, photos, message } = await fetch(url).then((res) => res.json());
 
@@ -66,7 +68,11 @@ export class MainLayout extends Component {
     // apply search phrase filter if any
     let filteredPhotos = photo;
     if (searchKey) {
-      filteredPhotos = photo.filter(({ title }) => title.toLowerCase().includes(searchKey.toLowerCase()));
+      filteredPhotos = photo.filter((
+        { title },
+      ) => title
+        .toLowerCase()
+        .includes(searchKey.toLowerCase()));
     }
 
     return (
