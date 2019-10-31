@@ -45,22 +45,27 @@ export class MainLayout extends Component {
     }
   }
 
-  render() {
-    const {
-      data: { photo },
-      searchKey,
-      galleryId,
-      isLoading,
-      errorMessage,
-    } = this.state;
+  filterPhotos = () => {
+    const { data: { photo = [] }, searchKey } = this.state;
+    let filteredPhotos = photo;
 
     // apply search phrase filter if any
-    let filteredPhotos = photo;
     if (searchKey) {
       filteredPhotos = photo.filter(({ title }) => title
         .toLowerCase()
         .includes(searchKey.toLowerCase()));
     }
+
+    return filteredPhotos;
+  }
+
+  render() {
+    const {
+      searchKey,
+      galleryId,
+      isLoading,
+      errorMessage,
+    } = this.state;
 
     return (
       <div className="container">
@@ -74,7 +79,7 @@ export class MainLayout extends Component {
         </header>
         <SearchInput name="searchKey" value={searchKey} onChange={this.onChangeText('searchKey')} />
         {!!errorMessage && <ErrorMessage message={errorMessage} />}
-        <ImageBoard data={filteredPhotos} />
+        <ImageBoard data={this.filterPhotos()} />
         <SearchSubmitInput
           name="galleryId"
           value={galleryId}

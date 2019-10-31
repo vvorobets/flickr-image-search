@@ -15,7 +15,9 @@ it('ImageCard component handles its own width', () => {
   const sampleData = {
     title: 'A', farm: 123, server: 456, id: 15, secret: '123fgh',
   };
-  const { farm, server, id, secret } = sampleData;
+  const {
+    farm, server, id, secret,
+  } = sampleData;
 
   const wrapper = shallow(<ImageCard data={sampleData} />);
 
