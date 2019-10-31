@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-import { SECOND_GALLERY_ID } from '../../config';
+import { getPhotos } from '../../services';
 
 import { ImageBoard } from '../imageBoard';
 import {
@@ -8,8 +7,6 @@ import {
 } from '../../components';
 
 import './style.css';
-
-const API_KEY = process.env.REACT_APP_FLICKR_API_KEY;
 
 export class MainLayout extends Component {
   constructor(props) {
@@ -31,21 +28,13 @@ export class MainLayout extends Component {
     this.fetchPhotos();
   }
 
-  onChangeText = (key) => (e) => {
-    this.setState({ [key]: e.target.value });
-  }
-
-  onSearchGallery = () => {
-    this.fetchPhotos();
-  }
+  onChangeText = (key) => (e) => this.setState({ [key]: e.target.value });
 
   fetchPhotos = async () => {
     this.setState({ isLoading: true, errorMessage: '' });
 
     const { galleryId } = this.state;
-    const url = `https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${API_KEY}&gallery_id=${galleryId || SECOND_GALLERY_ID}&format=json&nojsoncallback=1`;
-
-    const { stat, photos, message } = await fetch(url).then((res) => res.json());
+    const { stat, photos, message } = await getPhotos(galleryId);
 
     if (stat === 'ok') {
       this.setState({ data: photos, isLoading: false });
@@ -68,9 +57,7 @@ export class MainLayout extends Component {
     // apply search phrase filter if any
     let filteredPhotos = photo;
     if (searchKey) {
-      filteredPhotos = photo.filter((
-        { title },
-      ) => title
+      filteredPhotos = photo.filter(({ title }) => title
         .toLowerCase()
         .includes(searchKey.toLowerCase()));
     }
@@ -88,7 +75,12 @@ export class MainLayout extends Component {
         <SearchInput name="searchKey" value={searchKey} onChange={this.onChangeText('searchKey')} />
         {!!errorMessage && <ErrorMessage message={errorMessage} />}
         <ImageBoard data={filteredPhotos} />
-        <SearchSubmitInput name="galleryId" value={galleryId} onChange={this.onChangeText('galleryId')} onSubmit={this.onSearchGallery} />
+        <SearchSubmitInput
+          name="galleryId"
+          value={galleryId}
+          onChange={this.onChangeText('galleryId')}
+          onSubmit={this.fetchPhotos}
+        />
       </div>
     );
   }

@@ -17,7 +17,7 @@ export const SearchSubmitInput = ({
       ,
       or something else.
       <br />
-      Clean input field and push button to reset
+      To reset clean input field and push button below
     </p>
     <div className="search-submit-input-container">
       <input

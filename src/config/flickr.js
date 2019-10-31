@@ -1,5 +1,7 @@
 export const SECOND_GALLERY_ID = '66911286-72157647277042064';
 
+export const API_URL = 'https://www.flickr.com';
+
 export const ARI_ERRORS = {
   100: ['Invalid API Key',
     'The API key passed was not valid or has expired.'],
